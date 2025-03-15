@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center align-items-center vh-100" *ngIf="cargando">
+    <div class="loading-wave">
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+        <div class="loading-bar"></div>
+    </div>
+</div>
+
+<div class="container-fluid p-0" *ngIf="!cargando">
+    <div class="row g-0 login">
+        <div class="col-md-6 parteIzquierda">
+            <div class="logito">
+                <img src="assets/img/logoooooo.png" alt="Logo" class="mb-4" style="max-width: 50px" />
+            </div>
+
+            <div class="d-flex flex-column justify-content-center h-100 text-center"
+                style="max-width: 400px; margin: 0 auto;">
+                <h2 class="mb-4" style="color: #00be97; font-weight: bold;">Inicia Sesión</h2>
+
+                <!-- Formulario-->
+                <form #loginForm="ngForm">
+                    <!-- Mensaje de error -->
+                    <div *ngIf="error" class="alert alert-danger">
+                        {{ error }}
+                    </div>
+
+                    <!-- Campo Email-->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text border-0">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" placeholder="Correo electrónico"
+                                [(ngModel)]="credenciales.email" name="email" #emailInput="ngModel" required email>
+                        </div>
+                        <small class="text-danger"
+                            *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+                            <span *ngIf="emailInput.errors?.['required']">El email es requerido.</span>
+                            <span *ngIf="emailInput.errors?.['email']">Por favor, ingrese un email válido.</span>
+                        </small>
+                    </div>
+
+                    <!-- Campo Password-->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text border-0">
+                                <i class="bi bi-key"></i>
+                            </span>
+                            <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+                                placeholder="Contraseña" [(ngModel)]="credenciales.password" name="password"
+                                #passwordInput="ngModel" required>
+                            <button type="button"
+                                class="btn btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-2"
+                                (click)="ojito()">
+                                <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                            </button>
+                        </div>
+                        <small class="text-danger"
+                            *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+                            La contraseña es requerida.
+                        </small>
+                    </div>
+
+                    <!-- Boton Iniciar-->
+                    <div class="btn-iniciar">
+                        <button class="btn-login" (click)="login()" [disabled]="loginForm.invalid">
+                            INICIAR
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6 parteDerecha">
+            <h1 class="mb-4">¿No tienes una cuenta?</h1>
+            <p class="mb-5">Gestiona tus tareas pendientes y organiza tu día fácilmente</p>
+            <button (click)="register()" class="btn-registro">EMPEZAR</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="contenido container-fluid py-5">
+    <div class="titulo">
+        <h3>Mis Tareas</h3>
+    </div>
+
+    <div class="tareas">
+        <!-- Mostrar imagen y texto si no hay tareas -->
+        <div *ngIf="tareas.length === 0" class="no-contenido">
+            <img src="./assets/img/tareaBlanco.png" alt="Sin contenido" class="no-contenido-img" />
+            <p class="no-contenido-texto">¡Empieza tu primera tarea!</p>
+        </div>
+
+        <!--listado de tareas-->
+        <div class="lista-tareas">
+            <div class="tarea" *ngFor="let tarea of tareas">
+                <div class="contenidito">
+                    <div class="header">
+                        <p class="tituloTarea">{{ tarea.descripcion }}</p>
+                        <div class="detalles">
+                            <span class="prioridad" [ngClass]="{
+                                'baja': tarea.prioridad === 'Baja',
+                                'media': tarea.prioridad === 'Media',
+                                'alta': tarea.prioridad === 'Alta'
+                            }">
+                                <i class="bi bi-flag"></i> <span>{{ tarea.prioridad }}</span>
+                            </span>
+
+                            <span class="fecha">
+                                <i class="bi bi-calendar-check"></i> {{ tarea.fechaVencimiento | date: 'shortDate'
+                                }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

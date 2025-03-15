@@ -1,0 +1,24 @@
+<div class="modalProyecto">
+    <div class="contenido" (click)="$event.stopPropagation()">
+        <h2>
+            Nuevo Proyecto
+        </h2>
+        <div class="linea"></div>
+        <form (ngSubmit)="guardar()">
+            <div class="grupo">
+                <label>Nombre</label>
+                <input type="text" [(ngModel)]="proyectoDTO.nombre" name="nombre" required class="form-control">
+                <small *ngIf="errorMessage" class="text-danger"> {{ errorMessage }}</small>
+            </div>
+            <div class="grupo">
+                <label>Descripción</label>
+                <textarea [(ngModel)]="proyectoDTO.descripcion" name="descripcion" class="form-control"></textarea>
+            </div>
+
+            <div class="acciones">
+                <button type="button" (click)="cerrarModal()" class="btn-cancelar">Cancelar</button>
+                <button type="submit" class="btn-guardar">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

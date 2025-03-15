@@ -1,0 +1,32 @@
+<div class="modalComentario">
+    <div class="contenido">
+        <button class="cerrar-modal" (click)="cerrar.emit()">&times;</button>
+        <h2>Comentarios</h2>
+        <div class="linea"></div>
+
+        <div class="lista-comentarios-container">
+            <div class="lista-comentarios">
+
+                <!-- Comentarios -->
+                <div *ngFor="let comentario of comentarios" class="comentario">
+                    <div class="comentario-titulo">
+                        <strong>{{comentario.usuario.email}}</strong>
+                        <span>{{comentario.fechaCreacion | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                    <div class="comentario-texto">
+                        {{comentario.contenido}}
+                    </div>
+                </div>
+                
+            </div>
+            <small *ngIf="errorMessage"> {{ errorMessage }}</small>
+        </div>
+
+        <div class="nuevo-comentario-container">
+            <div class="nuevo-comentario">
+              <input [(ngModel)]="nuevoComentario" type="text" class="form-control" placeholder="Añade un comentario">
+              <button (click)="guardarComentarioNuevo()" class="btn-enviar">Enviar</button>
+            </div>
+        </div>          
+    </div>
+</div>

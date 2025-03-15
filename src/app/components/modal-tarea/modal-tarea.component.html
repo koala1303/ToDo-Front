@@ -1,0 +1,29 @@
+<div class="modalTarea">
+    <div class="contenido" (click)="$event.stopPropagation()">
+        <h2>Nueva Tarea</h2>
+        <div class="linea"></div>
+        <form (ngSubmit)="guardar()">
+            <div class="grupo">
+                <label>Nombre</label>
+                <input type="text" [(ngModel)]="tareaDTO.descripcion" name="descripcion" required class="form-control">
+                <small *ngIf="errorMessage" class="text-danger"> {{ errorMessage }}</small>
+            </div>
+            <div class="grupo">
+                <label>Fecha de Vencimiento</label>
+                <input type="date" [(ngModel)]="tareaDTO.fechaVencimiento" name="fechaVencimiento" required
+                    [min]="fechaMinima" class="form-control">
+                <small *ngIf="errorFecha" class="text-danger"> {{ errorFecha }}</small>
+            </div>
+            <div class="grupo">
+                <label>Prioridad</label>
+                <select [(ngModel)]="tareaDTO.prioridad" name="prioridad" required class="form-control">
+                    <option *ngFor="let p of prioridades" [value]="p">{{p}}</option>
+                </select>
+            </div>
+            <div class="acciones">
+                <button type="button" (click)="cerrarModal()" class="btn-cancelar">Cancelar</button>
+                <button type="submit" class="btn-guardar">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,134 @@
+.contenido {
+    max-width: 1000px;
+    margin-right: 300px;
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #E0F4F1;
+}
+
+.titulo h3 {
+    font-weight: 650;
+    margin: 0;
+    font-size: 1.8rem;
+    color: #000000c2;
+    letter-spacing: -0.5px;
+}
+
+/* boton añadir*/
+.btn-guardar {
+    background-color: #2DC5A1;
+    border: 2px solid #2DC5A1;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 7px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(45, 197, 161, 0.2);
+}
+
+.btn-guardar i {
+    font-size: 20px;
+}
+
+/* cartas*/
+.carta {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #E0F4F1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
+    box-shadow: 0 6px 15px rgba(45, 197, 161, 0.1);
+}
+
+.carta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(45, 197, 162, 0.086);
+    border-color: #2dc5a288;
+}
+
+.carta .cuerpo {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.carta .cartaNombre {
+    color: #1A4140;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.carta .cardDes {
+    color: #4A7C7B;
+    flex-grow: 1;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.carta .pie {
+    background-color: #F0FBFA;
+    padding: 1.25rem;
+    text-align: right;
+    border-top: 1px solid #E0F4F1;
+}
+
+.carta .btn-detalle {
+    background-color: #2DC5A1;
+    color: white;
+    padding: 0.700rem 1.25rem;
+    border-radius: 50px;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.carta .btn-detalle:hover {
+    background-color: #2bbb95;
+    transform: translateX(5px);
+}
+
+.carta .btn-detalle i {
+    transition: transform 0.3s ease;
+}
+
+.carta .btn-detalle:hover i {
+    transform: translateX(3px);
+}
+
+/*no contenido*/
+.no-contenido {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.no-contenido-img {
+    max-width: 400px;
+    width: 100%;
+}
+
+.no-contenido-texto {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #333333;
+    text-align: center;
+}

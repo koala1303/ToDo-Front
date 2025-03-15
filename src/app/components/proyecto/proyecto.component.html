@@ -1,0 +1,41 @@
+<div class="contenido container-fluid py-5">
+    <div class="titulo">
+        <h3>Mis Proyectos</h3>
+        <button class="btn-guardar" (click)="guardar()">
+            <i class="bi bi-plus"></i>Añadir Proyecto
+        </button>
+    </div>
+
+    <!-- Mostrar imagen y texto si no hay proyectos -->
+    <div *ngIf="proyectos.length === 0" class="no-contenido">
+        <img src="./assets/img/proyectoBlanco.png" alt="Sin contenido" class="no-contenido-img" />
+        <p class="no-contenido-texto">¡Empieza tu primer proyecto!</p>
+    </div>
+
+    <!--listado de proyectos-->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" *ngIf="proyectos.length > 0">
+        <div class="col" *ngFor="let proyecto of proyectos">
+            <div class="carta" (click)="verDetalleProyecto(proyecto)">
+                <div class="cuerpo">
+                    <h5 class="cartaNombre">{{ proyecto.nombre }}</h5>
+                    <p class="cardDes">{{ proyecto.descripcion }}</p>
+                </div>
+                <div class="pie">
+                    <button class="btn btn-detalle">
+                        Ver Detalles <i class="bi bi-arrow-right ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <app-modal-proyecto 
+        *ngIf="mostrarModal" 
+        (cerrar)="cerrarModal()" 
+        (guardarProyecto)="guardarProyecto($event)" 
+        [errorMessage]="errorMessage">
+    </app-modal-proyecto>
+
+
+</div>

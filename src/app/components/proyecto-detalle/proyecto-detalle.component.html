@@ -1,0 +1,177 @@
+<div class="contenido container-fluid py-5" *ngIf="proyecto">
+    <div class="titulo">
+        <div class="info-proyecto">
+            <h3>{{ proyecto.nombre }}</h3>
+            <p class="descripcion-proyecto">{{ proyecto.descripcion }}</p>
+        </div>
+        <button class="btn-guardar btn-espacio" (click)="abrirModalInvitar()">
+            <i class="bi bi-person-add"></i>
+        </button>
+        <button class="btn-guardar" (click)="guardar()">
+            <i class="bi bi-plus"></i>Añadir Tarea
+        </button>
+    </div>
+
+    <div class="tareas">
+        <!-- Mostrar imagen y texto si no hay tareas -->
+        <div *ngIf="tareas.length === 0" class="no-contenido">
+            <img src="./assets/img/tareaBlanco.png" alt="Sin contenido" class="no-contenido-img" />
+            <p class="no-contenido-texto">¡Empieza tu primera tarea!</p>
+        </div>
+
+        <!--Listado tareas-->
+        <div class="lista-tareas">
+            <!-- Tareas Activas -->
+            <div class="tareas-activas">
+                <div class="tarea" *ngFor="let tarea of tareasActivas">
+                    <div class="contenidito">
+                        <div class="header" [ngClass]="{'editing': editarId === tarea.id}">
+                            <ng-container *ngIf="editarId !== tarea.id">
+                                <div class="tarea-izquierda">
+                                    <label class="checkbox-container">
+                                        <input type="checkbox" (click)="sonidito()" class="tarea-checkbox"
+                                            (change)="cambiarEstadoTarea(tarea)">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <p class="tituloTarea">{{ tarea.descripcion }}</p>
+                                </div>
+
+                                <div class="tarea-derecha">
+                                    <div class="detalles">
+                                        <span *ngIf="tarea.asignado?.username" class="usuario-asignado">
+                                            <i class="bi bi-person-circle"></i> 
+                                            {{ (tarea.asignado?.username || '').charAt(0).toUpperCase() + (tarea.asignado?.username || '').slice(1) }}
+                                        </span>
+
+                                        <span class="prioridad" [ngClass]="{
+                                            'baja': tarea.prioridad === 'Baja',
+                                            'media': tarea.prioridad === 'Media',
+                                            'alta': tarea.prioridad === 'Alta'
+                                        }">
+                                            <i class="bi bi-flag"></i> <span>{{ tarea.prioridad }}</span>
+                                        </span>
+                                        <span class="fecha">
+                                            <i class="bi bi-calendar-check"></i> {{ tarea.fechaVencimiento | date:
+                                            'dd/MM/yyyy' }}
+                                        </span>
+
+                                        <div class="opciones-container">
+                                            <button class="btn-opciones" (click)="menuOpciones(tarea)">
+                                                <i class="bi bi-three-dots-vertical"></i>
+                                            </button>
+                                            <div class="menu-opciones" *ngIf="menuEstado[tarea.id]">
+
+                                                <div class="opcion-menu" (click)="editarTarea(tarea)">
+                                                    <span>Editar</span>
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </div>
+                                                <div class="opcion-menu1" (click)="eliminarTarea(tarea)">
+                                                    <span>Eliminar</span>
+                                                    <i class="bi bi-trash"></i>
+                                                </div>
+
+                                                <div class="opcion-menu2" (click)="abrirModalComentarios(tarea)">
+                                                    <span>Comentario</span>
+                                                    <i class="bi bi-chat"></i>
+                                                </div>
+
+                                                <div class="opcion-menu3" (click)="abrirModalAsignar(tarea)">
+                                                    <span>Asignar</span>
+                                                    <i class="bi bi-person-circle"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="editarId === tarea.id">
+                                <div class="tarea-edicion">
+
+                                    <div class="edicion-contenido">
+                                        <input class="tarea-input-descripcion" [(ngModel)]="editarNombre"
+                                            placeholder="Descripción de la tarea" />
+                                        <small *ngIf="errorMessage" class="text-danger"> {{ errorMessage }}</small>
+
+                                        <div class="edicion-detalles">
+                                            <select class="tarea-input-prioridad" [(ngModel)]="editarPrioridad">
+                                                <option value="Baja">Baja</option>
+                                                <option value="Media">Media</option>
+                                                <option value="Alta">Alta</option>
+                                            </select>
+                                            <input class="tarea-input-fecha" type="date" id="fecha"
+                                                [(ngModel)]="editarFecha" [min]="fechaMinima">
+                                            <button class="btn-cancelar" (click)="cancelarEdicion()">Cancelar</button>
+                                            <button class="btn-guardar" (click)="guardarEdicion(tarea)">Guardar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tareas Completadas -->
+            <div class="tareas-completadas" *ngIf="tareasCompletadas.length > 0">
+                <div class="completadas-header">
+                    <h4>Tareas Completadas</h4>
+                </div>
+                <div class="tarea" *ngFor="let tarea of tareasCompletadas">
+                    <div class="contenidito">
+                        <div class="header">
+                            <div class="tarea-izquierda tarea-completada">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" class="tarea-checkbox" checked
+                                        (change)="cambiarEstadoTarea(tarea)">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <p class="tituloTarea">{{ tarea.descripcion }}</p>
+                            </div>
+
+                            <div class="tarea-derecha">
+                                <div class="detalles">
+                                    <span *ngIf="tarea.asignado?.username" class="usuario-asignado">
+                                        <i class="bi bi-person-circle"></i> 
+                                        {{ (tarea.asignado?.username || '').charAt(0).toUpperCase() + (tarea.asignado?.username || '').slice(1) }}
+                                    </span>
+
+                                    <span class="prioridad" [ngClass]="{
+                                        'baja': tarea.prioridad === 'Baja',
+                                        'media': tarea.prioridad === 'Media',
+                                        'alta': tarea.prioridad === 'Alta'
+                                    }">
+                                        <i class="bi bi-flag"></i> <span>{{ tarea.prioridad }}</span>
+                                    </span>
+                                    <span class="fecha">
+                                        <i class="bi bi-calendar-check"></i> {{ tarea.fechaVencimiento | date:
+                                        'dd/MM/yyyy' }}
+                                    </span>
+                                    <span class="eliminar-tarea" (click)="eliminarTareaC(tarea)">
+                                        <i class="bi bi-x-lg"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <app-modal-tarea *ngIf="mostrarModal" (cerrar)="cerrarModal()" (guardarTarea)="guardarTarea($event)"
+            [errorMessage]="errorMessage">
+        </app-modal-tarea>
+
+        <app-modal-invitar *ngIf="mostrarModalInvitar" [proyectoId]="proyecto.id" (cerrar)="cerrarModalInvitar()"
+            (invitacionEnviada)="procesarInvitacion($event)"></app-modal-invitar>
+
+        <app-modal-comentario *ngIf="mostrarModalComentarios" [idTarea]="idTareaSeleccionada"
+            [tarea]="tareaSeleccionada" [comentarios]="comentarios" (cerrar)="cerrarModalComentarios()"
+            (guardarComentario)="guardarComentario($event)">
+        </app-modal-comentario>
+
+        <app-modal-asignar *ngIf="mostrarModalAsignar" [proyecto]="proyecto!" [tarea]="tareaSeleccionada!"
+            (cerrar)="cerrarModalAsignar()" (asignarCorreo)="asignarCorreoTarea($event)">
+        </app-modal-asignar>
+    </div>
+</div>

@@ -1,0 +1,133 @@
+<div class="container-fluid p-0">
+    <div class="row g-0 register">
+      <div class="col-md-6 parteDerecha">
+        <div class="logito">
+          <img src="assets/img/logoregister.png" alt="Logo" class="mb-4" style="max-width: 80px" />
+        </div>
+        <h1 class="mb-4">¿Ya tienes una cuenta?</h1>
+        <p class="mb-5">Inicia sesión para continuar gestionando tus tareas</p>
+        <button (click)="login()" class="btn-login">INICIAR SESIÓN</button>
+      </div>
+  
+      <div class="col-md-6 parteFormulario">
+        <div class="d-flex flex-column justify-content-center h-100 text-center" style="max-width: 400px; margin: 0 auto;">
+          <h2 class="mb-4" style="color: #00be97; font-weight: bold;">Regístrate</h2>
+  
+          <!-- Formulario -->
+          <form (ngSubmit)="registrarUsuario(regUser)" #registerForm="ngForm">
+  
+            <!-- Campo Nombre de Usuario-->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-text border-0">
+                  <i class="bi bi-person"></i>
+                </span>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="Nombre de usuario"
+                  name="nombre"
+                  [(ngModel)]="regUser.username"
+                  required
+                  minlength="6"
+                  maxlength="30"
+                  pattern="^[^\s]+$" 
+                  #nombre="ngModel">
+              </div>
+              <small *ngIf="nombre.invalid && nombre.touched" class="text-danger">
+                El nombre no debe contener espacios y debe tener entre 6 y 30 caracteres.
+              </small>
+              <small  *ngIf="errorUsername" class="text-danger"> 
+                {{ errorUsername }}
+              </small>
+            </div>
+            
+  
+            <!-- Campo Email -->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-text border-0">
+                  <i class="bi bi-envelope"></i>
+                </span>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  placeholder="Correo electrónico"
+                  name="email"
+                  [(ngModel)]="regUser.email"
+                  required
+                  maxlength="50"
+                  #email="ngModel">
+              </div>
+              <small *ngIf="email.invalid && email.touched" class="text-danger">
+                Introduzca un email válido, máximo 50 caracteres.
+              </small>
+              <small  *ngIf="errorEmail" class="text-danger"> 
+                {{ errorEmail }}
+              </small>
+            </div>
+  
+            <!-- Campo Contraseña -->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-text border-0">
+                  <i class="bi bi-key"></i>
+                </span>
+                <input 
+                  [type]="showPassword ? 'text' : 'password'"
+                  class="form-control" 
+                  placeholder="Crea una contraseña"
+                  name="password"
+                  [(ngModel)]="regUser.password"
+                  required
+                  #password="ngModel">
+                  <button type="button"
+                      class="btn btn-outline-secondary position-absolute end-0 top-50 translate-middle-y me-2"
+                      (click)="ojito()">
+                      <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'"></i>
+                  </button>
+              </div>
+              <small *ngIf="password.invalid && password.touched" class="text-danger">
+                La contraseña es obligatoria.
+              </small>
+              <small *ngIf="errorPassword" class="text-danger">
+                {{ errorPassword }}
+              </small>
+            </div>
+  
+            <!-- Campo DNI -->
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-text border-0">
+                  <i class="bi bi-person-badge"></i>
+                </span>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="DNI"
+                  name="dni"
+                  [(ngModel)]="regUser.dni"
+                  required
+                  minlength="8"
+                  maxlength="8"
+                  pattern="^[0-9]{8}$"
+                  #dni="ngModel">
+              </div>
+              <small *ngIf="dni.invalid && dni.touched" class="text-danger">
+                El DNI debe tener 8 dígitos numéricos.
+              </small>
+              <small  *ngIf="errorDNI" class="text-danger"> 
+                {{ errorDNI }}
+              </small>
+            </div>
+  
+            <!-- Botón Registrar -->
+            <div class="btn-iniciar">
+              <button type="submit" class="btn-register" [disabled]="registerForm.invalid">Registrar cuenta</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

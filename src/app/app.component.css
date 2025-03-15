@@ -1,0 +1,194 @@
+.contenedor {
+    display: flex;
+    height: 100vh;
+}
+
+/*navegador*/
+.nav {
+    width: 300px;
+    height: 100vh;
+    background-color: white;
+    box-shadow:
+        0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px 25px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 1;
+    position: fixed;
+}
+
+/*img logo*/
+.logo {
+    width: 75px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.logo:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.logo-contenedor {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+}
+
+.linea {
+    border-top: 1px solid #E0F4F1;
+    margin: 5px 0;
+    opacity: 0.6;
+}
+
+/*bienvenida*/
+.bienvenida {
+    background: linear-gradient(135deg, #00c9a7, #00a392);
+    color: white;
+    padding: 18px 25px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    box-shadow: 0 5px 30px rgba(0, 201, 169, 0.25);
+    transition: all 0.4s ease;
+}
+
+.bienvenida:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 201, 169, 0.35);
+}
+
+.bienvenida .username {
+    color: #e0fff6;
+    font-weight: 600;
+}
+
+/*opciones*/
+.opciones {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.opcion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #00a392;
+    padding: 15px 22px;
+    text-decoration: none;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    border: 1px solid transparent;
+}
+
+.opcion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 201, 169, 0.05);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.opcion:hover::before {
+    opacity: 1;
+}
+
+.opcion:hover {
+    color: #00c9a7;
+    border-color: rgba(0, 201, 169, 0.1);
+    transform: translateX(3px);
+}
+
+.opcion.active {
+    background-color: #e6f7f2;
+    color: #00c9a7;
+    font-weight: 600;
+    box-shadow: 0 5px 20px rgba(0, 201, 169, 0.1);
+}
+
+.opcion .si i {
+    transition: all 0.3s ease;
+    margin-right: 12px;
+}
+
+.opcion:hover .si i {
+    transform: scale(1.1) rotate(15deg);
+}
+
+/*boton salir*/
+.Btn {
+    --exit-color: #ff5e5e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 55px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background: linear-gradient(135deg, var(--exit-color), #ff7b7b);
+    margin-top: auto;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(255, 94, 94, 0.25);
+}
+
+.Btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(255, 94, 94, 0.35);
+}
+
+.Btn .sign {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Btn .sign svg {
+    width: 22px;
+    fill: white;
+    transition: transform 0.3s ease;
+}
+
+.Btn .text {
+    position: absolute;
+    right: 10%;
+    color: white;
+    font-weight: 700;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.Btn:hover .sign svg {
+    transform: rotate(15deg);
+}
+
+.Btn:hover .text {
+    opacity: 1;
+    right: 20%;
+}
+
+/*contenido*/
+.principal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}

@@ -1,0 +1,27 @@
+<div class="modalTarea">
+    <div class="contenido" (click)="$event.stopPropagation()">
+        <h2>Agregar Asignación</h2>
+        <div class="linea"></div>
+        <form>
+            <!-- Mostrar lista de invitados -->
+            <div class="lista-invitados" *ngIf="invitados && invitados.length > 0">
+                <ul>
+                    <li *ngFor="let invitado of invitados" class="invitado-item"
+                        [class.seleccionado]="invitado === seleccionado"
+                        (click)="seleccionarCorreo(invitado)">
+                        {{ invitado.email }}
+                    </li>
+                </ul>
+            </div>
+
+            <div *ngIf="errorMessage" class="error-message">
+                {{ errorMessage }}
+            </div>
+
+            <div class="acciones">
+                <button type="button" (click)="cerrarModal()" class="btn-cancelar">Cancelar</button>
+                <button type="button" class="btn-guardar" [disabled]="!seleccionado" (click)="asignar()">Asignar</button>
+            </div>
+        </form>
+    </div>
+</div>

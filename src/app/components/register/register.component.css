@@ -1,0 +1,119 @@
+.register {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.parteDerecha {
+    background: linear-gradient(120deg, #00e8b7, #007865);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    min-height: 100vh;
+}
+
+.parteFormulario {
+    background: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+.logito {
+    position: absolute;
+    top: 20px;
+    left: 13px;
+}
+
+.parteFormulario .d-flex {
+    padding-top: 0;
+    transform: translateY(-20px);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    background: #f5f6f7;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+.input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.input-group-text i {
+    color: #949494;
+    font-size: 1.2rem;
+}
+
+.form-control {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    box-shadow: none;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.form-control::placeholder {
+    color: #949494;
+    font-weight: 400;
+}
+
+.form-control:focus {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.btn-register {
+    background: #00be97;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn-login {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+    padding: 0.8rem 3rem;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+/*ojo*/
+.form-group .btn-outline-secondary {
+    height: calc(3.5rem - 2px);
+    line-height: 1;
+    border: none;
+    cursor: pointer;
+}
+
+.form-group .btn-outline-secondary:hover,
+.form-group .btn-outline-secondary:focus {
+    background-color: transparent;
+    color: #007865;
+}
+
+/* Eliminar el fondo azulado */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f5f6f7 inset !important;
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 5000s ease-in-out 0s;
+}

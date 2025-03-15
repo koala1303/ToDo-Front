@@ -1,0 +1,26 @@
+<div class="modalTarea">
+    <div class="contenido" (click)="$event.stopPropagation()">
+        <h2>Agregar Invitados</h2>
+        <div class="linea"></div>
+        <form (ngSubmit)="enviarInvitacion()">
+            <div class="grupo">
+                <input 
+                    type="email" 
+                    name="correo" 
+                    [(ngModel)]="invitar"
+                    required 
+                    class="form-control" 
+                    placeholder="Añadir por correo"
+                >
+                <div *ngIf="errorMessage" class="error-message">
+                    {{ errorMessage }}
+                </div>
+            </div>
+
+            <div class="acciones">
+                <button type="button" (click)="cerrarModal()" class="btn-cancelar">Cancelar</button>
+                <button type="submit" class="btn-guardar">Invitar</button>
+            </div>
+        </form>
+    </div>
+</div>

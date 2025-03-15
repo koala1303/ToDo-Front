@@ -1,0 +1,190 @@
+.login {
+    min-height: 100vh;
+    width: 100%;
+}
+
+.parteIzquierda {
+    background: white;
+    min-height: 100vh;
+    position: relative;
+}
+
+/*img logo*/
+.logito {
+    position: absolute;
+    top: 30px;
+    left: 25px;
+}
+
+/*parte izquierda*/
+.parteIzquierda .d-flex {
+    padding-top: 0;
+    transform: translateY(-20px);
+}
+
+/*parte derecha*/
+.parteDerecha {
+    background: linear-gradient(120deg, #00e8b7, #007865);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    min-height: 100vh;
+}
+
+.social-login {
+    margin: 2rem 0;
+}
+
+.social-button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e7fff9;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem;
+    color: #007865;
+    transition: all 0.3s;
+}
+
+/*inputs*/
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    background: #f5f6f7;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+}
+
+.input-group-text {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+}
+
+.input-group-text i {
+    color: #949494;
+    font-size: 1.2rem;
+}
+
+.form-control {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    box-shadow: none;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+.form-control::placeholder {
+    color: #949494;
+    font-weight: 400;
+}
+
+.form-control:focus {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+/*botoncitos*/
+.btn-login {
+    background: #00be97;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 25px;
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.btn-registro {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+    padding: 0.8rem 3rem;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.olvidar {
+    color: #007865;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/*ojo*/
+.form-group .btn-outline-secondary {
+    height: calc(3.5rem - 2px);
+    line-height: 1;
+    border: none;
+}
+
+.form-group .btn-outline-secondary:hover,
+.form-group .btn-outline-secondary:focus {
+    background-color: transparent;
+    color: #007865;
+}
+
+/* Eliminar el fondo azulado al ver sugerencias de datos pa ingresar*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f5f6f7 inset !important;
+    -webkit-text-fill-color: inherit !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/*cargando*/
+.loading-wave {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.loading-bar {
+    width: 20px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: #00be97;
+    border-radius: 5px;
+    animation: loading-wave-animation 1s ease-in-out infinite;
+}
+
+.loading-bar:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.loading-bar:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.loading-bar:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+@keyframes loading-wave-animation {
+    0% {
+        height: 10px;
+    }
+
+    50% {
+        height: 50px;
+    }
+
+    100% {
+        height: 10px;
+    }
+}
